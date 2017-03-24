@@ -1,0 +1,208 @@
+/*
+Created		2013/9/23
+Modified		2013/10/9
+Project		
+Model		
+Company		
+Author		
+Version		
+Database		mySQL 5 
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+drop table IF EXISTS TB_CHECK;
+drop table IF EXISTS TB_JOB;
+drop table IF EXISTS TB_CLASSROOM;
+drop table IF EXISTS TB_FILE_UPLOAD;
+drop table IF EXISTS TB_CLASS_OUT;
+drop table IF EXISTS TB_CUSTOMER;
+drop table IF EXISTS TB_PROJECT;
+
+
+
+
+Create table TB_PROJECT (
+	ID Int NOT NULL AUTO_INCREMENT,
+	CODE Varchar(20) NOT NULL COMMENT '项目编码',
+	NAME Varchar(50) NOT NULL COMMENT '项目名称',
+	TYPE Varchar(20) DEFAULT 0 COMMENT '类型',
+	STATUS Int DEFAULT 0 COMMENT '状态',
+	CREATE_DATE Date COMMENT '创建日期',
+	CREATE_BY Varchar(20) COMMENT '创建人',
+	UPDATE_TIME Datetime COMMENT '更新时间',
+	UPDATE_BY Varchar(20) COMMENT '更新人',
+	REMARK Varchar(500) COMMENT '备注',
+	UNIQUE (ID),
+	UNIQUE (CODE),
+ Primary Key (ID)) ENGINE = MyISAM
+COMMENT = '项目表';
+
+Create table TB_CUSTOMER (
+	ID Int NOT NULL AUTO_INCREMENT,
+	CODE Varchar(20) NOT NULL COMMENT '客户编码',
+	NAME Varchar(50) NOT NULL COMMENT '客户名称',
+	TYPE Varchar(20) COMMENT '类型',
+	STATUS Int DEFAULT 0 COMMENT '状态',
+	CREATE_DATE Date COMMENT '创建日期',
+	CREATE_BY Varchar(20) COMMENT '创建人',
+	UPDATE_TIME Datetime COMMENT '更新时间',
+	UPDATE_BY Varchar(20) COMMENT '更新人',
+	REMARK Varchar(500) COMMENT '备注',
+	UNIQUE (ID),
+	UNIQUE (CODE),
+ Primary Key (ID)) ENGINE = MyISAM
+COMMENT = '客户表';
+
+Create table TB_CLASS_OUT (
+	ID Int NOT NULL AUTO_INCREMENT COMMENT '课外辅导ID',
+	CODE Varchar(20) COMMENT '学号',
+	NAME Varchar(50) COMMENT '学员姓名',
+	TYPE Varchar(20) COMMENT '类型(课堂/课外)',
+	STATUS Int DEFAULT 0 COMMENT '状态',
+	CREATE_DATE Date COMMENT '创建日期',
+	CREATE_BY Varchar(20) COMMENT '创建人',
+	UPDATE_TIME Datetime COMMENT '更新时间',
+	UPDATE_BY Varchar(20) COMMENT '更新人',
+	REMARK Varchar(500) COMMENT '备注',
+	QUESTION Varchar(200) COMMENT '问题点',
+	FEED_BACK Varchar(500) COMMENT '反馈信息',
+	SCORE Float(15,2) COMMENT '得分',
+	UNIQUE (ID),
+ Primary Key (ID)) ENGINE = MyISAM
+COMMENT = '课外辅导表';
+
+Create table TB_FILE_UPLOAD (
+	ID Int NOT NULL AUTO_INCREMENT,
+	CODE Varchar(20) NOT NULL COMMENT '上载编码',
+	NAME Varchar(50) NOT NULL COMMENT '上载名称',
+	TYPE Varchar(20) DEFAULT 0 COMMENT '类型',
+	STATUS Int DEFAULT 0 COMMENT '状态',
+	CREATE_DATE Date COMMENT '创建日期',
+	CREATE_BY Varchar(20) COMMENT '创建人',
+	UPDATE_TIME Datetime COMMENT '更新时间',
+	UPDATE_BY Varchar(20) COMMENT '更新人',
+	REMARK Varchar(500) COMMENT '备注',
+	FILE_TYPE Varchar(20) NOT NULL COMMENT '文件类型',
+	FILE_SIZE Decimal(18,2) COMMENT '文件大小',
+	FILE_OLD_NAME Varchar(200) NOT NULL COMMENT '文件原始名',
+	FILE_NEW_NAME Varchar(200) NOT NULL COMMENT '文件上载名',
+	SAVE_PATH Varchar(200) NOT NULL COMMENT '存储路径',
+	SAVE_TEM_PATH Varchar(200) COMMENT '临时存储路径',
+	REF_ID Int COMMENT '业务引用ID',
+	REF_TYPE Varchar(20) COMMENT '业务类型',
+	UNIQUE (ID),
+	UNIQUE (CODE),
+ Primary Key (ID)) ENGINE = MyISAM
+COMMENT = '文件上载表';
+
+Create table TB_CLASSROOM (
+	ID Int NOT NULL AUTO_INCREMENT COMMENT '课堂培训表',
+	CODE Varchar(20) COMMENT '课堂编码',
+	NAME Varchar(50) COMMENT '课堂名称',
+	TYPE Varchar(20) COMMENT '类型',
+	STATUS Int DEFAULT 0 COMMENT '状态',
+	CREATE_DATE Date COMMENT '创建日期',
+	CREATE_BY Varchar(20) COMMENT '创建人',
+	UPDATE_TIME Datetime COMMENT '更新时间',
+	UPDATE_BY Varchar(20) COMMENT '更新人',
+	REMARK Varchar(500) COMMENT '备注',
+	ROOM_DATE Char(20) COMMENT '课堂培训日期',
+	START_TIME Varchar(20) COMMENT '开始时间(如9:30)',
+	END_TIME Varchar(20) COMMENT '结束时间(如18:00)',
+	TEACHER Varchar(20) COMMENT '讲师',
+	STUDENT_NUM Int COMMENT '学员人数',
+	FACT_STUDENT_NUM Int COMMENT '实到学员人数',
+	CLASS_ID Int COMMENT '班级ID',
+	CLASS_NAME Varchar(50) COMMENT '班级名称',
+	ROOM_PLACE Varchar(200) COMMENT '培训地点',
+	UNIQUE (ID),
+ Primary Key (ID)) ENGINE = MyISAM
+COMMENT = '课堂表';
+
+Create table TB_JOB (
+	ID Int NOT NULL AUTO_INCREMENT,
+	CODE Varchar(20) NOT NULL COMMENT '就业编码',
+	NAME Varchar(50) NOT NULL COMMENT '就业名称',
+	TYPE Varchar(20) DEFAULT 0 COMMENT '类型',
+	STATUS Int DEFAULT 0 COMMENT '状态',
+	CREATE_DATE Date COMMENT '创建日期',
+	CREATE_BY Varchar(20) COMMENT '创建人',
+	UPDATE_TIME Datetime COMMENT '更新时间',
+	UPDATE_BY Varchar(20) COMMENT '更新人',
+	REMARK Varchar(500) COMMENT '备注',
+	UNIQUE (ID),
+	UNIQUE (CODE),
+ Primary Key (ID)) ENGINE = MyISAM
+COMMENT = '就业表';
+
+Create table TB_CHECK (
+	ID Int NOT NULL AUTO_INCREMENT,
+	CODE Varchar(20) NOT NULL COMMENT '学号',
+	NAME Varchar(50) NOT NULL COMMENT '学员姓名',
+	TYPE Varchar(20) DEFAULT 0 COMMENT '考核类型',
+	STATUS Int DEFAULT 0 COMMENT '状态',
+	CREATE_DATE Date COMMENT '创建日期',
+	CREATE_BY Varchar(20) COMMENT '创建人',
+	UPDATE_TIME Datetime COMMENT '更新时间',
+	UPDATE_BY Varchar(20) COMMENT '更新人',
+	REMARK Varchar(500) COMMENT '备注',
+	CHECK_TIME Datetime COMMENT '考核时间',
+	TIME_LEN Float(12,2) COMMENT '时长(小时)',
+	PROJECT_ID Int COMMENT '项目ID',
+	COURSE_ID Int COMMENT '课程ID',
+	SCORE Float(12,2) COMMENT '得分',
+	CHECK_INFO Varchar(200) COMMENT '考核评价信息',
+	CHECK_TEACHER Varchar(20) COMMENT '考核老师',
+	UNIQUE (ID),
+	UNIQUE (CODE),
+ Primary Key (ID)) ENGINE = MyISAM
+COMMENT = '考核表';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Users permissions */
+
+
+
+
+
+

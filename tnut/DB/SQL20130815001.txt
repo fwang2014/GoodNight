@@ -1,0 +1,147 @@
+/*
+Created		2013/8/14
+Modified		2013/8/15
+Project		
+Model		
+Company		
+Author		
+Version		
+Database		mySQL 5 
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+drop table IF EXISTS TB_DIC_VALUE;
+drop table IF EXISTS TB_DIC_TYPE;
+drop table IF EXISTS TB_COST_FILL;
+drop table IF EXISTS TB_RE_PROJECT_COST;
+drop table IF EXISTS TB_PROJECT;
+
+
+
+
+Create table TB_PROJECT (
+	id Varchar(50) NOT NULL COMMENT '唯一标示',
+	code Varchar(20) NOT NULL COMMENT '项目编码',
+	name Varchar(50) NOT NULL COMMENT '项目名称',
+	type Int DEFAULT 0 COMMENT '数据类型',
+	status Int DEFAULT 0 COMMENT '数据状态',
+	create_by Varchar(50) COMMENT '创建人',
+	create_date Date COMMENT '创建日期',
+	update_by Varchar(50) COMMENT '更新人',
+	update_time Datetime COMMENT '更新时间',
+	remark Varchar(50) COMMENT '备注',
+	UNIQUE (id),
+	UNIQUE (code),
+ Primary Key (id)) ENGINE = MyISAM
+COMMENT = '项目信息表';
+
+Create table TB_RE_PROJECT_COST (
+	id Varchar(50) NOT NULL,
+	project_id Varchar(50) NOT NULL COMMENT '项目ID',
+	cost_fill_id Varchar(50) NOT NULL COMMENT '成本填报ID',
+	UNIQUE (id),
+ Primary Key (id)) ENGINE = MyISAM
+COMMENT = '项目成本关系表';
+
+Create table TB_COST_FILL (
+	id Varchar(50) NOT NULL COMMENT 'ID',
+	code Varchar(20) NOT NULL COMMENT '编码',
+	name Varchar(50) COMMENT '名称',
+	start_value Varchar(50) COMMENT '起始值',
+	end_value Varchar(50) COMMENT '结束值',
+	value_type Int COMMENT '值类型',
+	price Float(10,2) COMMENT '单价',
+	qty Float(10,2) COMMENT '数量',
+	amt Float(10,2) COMMENT '金额',
+	unit Varchar(20) COMMENT '单位',
+	type Int DEFAULT 0 COMMENT '数据类型',
+	status Int DEFAULT 0 COMMENT '数据状态',
+	create_by Varchar(50) COMMENT '创建人',
+	create_date Date COMMENT '创建日期',
+	update_by Varchar(20) COMMENT '更新人',
+	update_time Datetime COMMENT '更新时间',
+	remark Varchar(500) COMMENT '备注',
+	UNIQUE (id),
+ Primary Key (id)) ENGINE = MyISAM
+COMMENT = '成本填报表';
+
+Create table TB_DIC_TYPE (
+	id Varchar(50) NOT NULL,
+	value_type Int NOT NULL,
+	type Int DEFAULT 0,
+	status Int DEFAULT 0,
+	create_by Varchar(50),
+	create_date Date,
+	update_by Varchar(50),
+	update_time Datetime,
+	remark Varchar(500),
+	parent_id Varchar(50),
+	UNIQUE (id),
+	UNIQUE (value_type),
+ Primary Key (id)) ENGINE = MyISAM
+COMMENT = '值类型表';
+
+Create table TB_DIC_VALUE (
+	id Varchar(50) NOT NULL,
+	type_id Int NOT NULL,
+	type Int DEFAULT 0,
+	status Int DEFAULT 0,
+	create_by Varchar(50),
+	create_date Date,
+	update_by Varchar(50),
+	update_time Datetime,
+	remark Varchar(500),
+	value Varchar(50),
+	UNIQUE (id),
+	UNIQUE (type_id),
+ Primary Key (id)) ENGINE = MyISAM
+COMMENT = '值类型表';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Users permissions */
+
+
+
+
+
+
